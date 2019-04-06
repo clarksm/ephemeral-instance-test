@@ -1,0 +1,25 @@
+
+---
+- hosts: prod
+  become: yes
+  remote_user: ec2-user
+  tasks:
+    - name: Install Apache.
+      yum: name={{ item }} state=present
+      with_items:
+      - httpd
+      - php
+      - php-mysql
+    - name: Make my directory tree readable
+      file:
+        path: /var/www/html/
+        mode: u=rwX,g=rX,o=rX
+        recurse: yes
+        owner: apache
+        group: apache
+    - name: Make sure Apache is started now and at boot.
+      service: name=httpd state=started enabled=yes
+    - name: copy index file to www
+      copy:
+        src: /var/lib/jenkins/workspace/pipeline/aws/prodapp/index.html
+        dest: /var/www/html/index.html
