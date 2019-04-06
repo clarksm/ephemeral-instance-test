@@ -39,11 +39,6 @@ resource "aws_instance" "tf_server" {
 	key_name = "${aws_key_pair.tf_auth.id}"
 	vpc_security_group_ids = ["${var.security_group}"]
 	subnet_id = "${element(var.subnets, count.index)}"
-	//user_data = "${data.template_file.user-init.*.rendered[count.index]}"
-
-	//provisioner "local-exec" {
-	//	command    = "echo ${self.public_ip} >> hosts.txt"
-  //}
 
 }
 
@@ -60,11 +55,6 @@ resource "aws_instance" "tf_prd_server" {
 	key_name = "${aws_key_pair.tf_auth.id}"
 	vpc_security_group_ids = ["${var.prd_security_group}"]
 	subnet_id = "${element(var.prd_subnets, count.index)}"
-	//user_data = "${data.template_file.user-init.*.rendered[count.index]}"
-
-	//provisioner "local-exec" {
-	//	command    = "echo ${self.public_ip} >> hosts.txt"
-  //}
 
 }
 
