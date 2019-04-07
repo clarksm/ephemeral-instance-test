@@ -19,9 +19,12 @@ pipeline {
 
  stage('Build') {
  steps {
+    dir('ephemeral-instance-test')
+    {
     echo 'Running build automation'
-    sh './gradlew build --no-daemon'
+    sh 'train-app/gradlew build --no-daemon'
     archiveArtifacts artifacts: 'dist/trainSchedule.zip'
+    }
     }
 }
  
