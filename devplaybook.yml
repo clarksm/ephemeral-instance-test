@@ -34,7 +34,8 @@
     - name: Extract Gradle
       unarchive:
         src: /opt/gradle/gradle-5.3.1-bin.zip
-        dest: /opt/gradle/ copy=no
+        dest: /opt/gradle/
+        remote_src: yes
       environment: /opt/gradle/gradle-5.3.1
     - name: example copying file with owner and permissions
       copy:
