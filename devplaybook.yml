@@ -21,11 +21,15 @@
       service: name=httpd state=started enabled=yes
     - name: Install Unzip
       yum: name=unzip state=present
+    - name: Install GTAR     
+      yum: name=tar state=present   
     - name: Create gradle directory
       file:
         path: /opt/gradle
         state: directory
     - name: DL & Extract Gradle
+      become: true
+      become_method: sudo
       unarchive:
         src: https://services.gradle.org/distributions/gradle-5.3.1-bin.zip
         dest: /opt/gradle/
