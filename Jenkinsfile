@@ -22,7 +22,7 @@ pipeline {
     dir('train-app')
     {
     echo 'Running build automation'
-    sh './gradle wrapper build --no-daemon'
+    sh './gradlew build --no-daemon'
     archiveArtifacts artifacts: 'dist/trainSchedule.zip'
     }
     }
