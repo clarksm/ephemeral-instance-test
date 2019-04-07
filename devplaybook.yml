@@ -28,7 +28,7 @@
         mode: 0755
     - name: Download Gradle
       get_url:
-        url: https://gradle.org/next-steps/?version=5.3.1&format=bin
+        url: https://services.gradle.org/distributions/gradle-5.3.1-bin.zip
         dest: /opt/gradle/
         mode: 0440
     - name: Extract Gradle
