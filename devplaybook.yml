@@ -27,14 +27,10 @@
       file:
         path: /opt/gradle
         state: directory
-    - name: DL & Extract Gradle
-      become: true
-      become_method: sudo
-      unarchive:
-        src: https://services.gradle.org/distributions/gradle-5.3.1-bin.zip
-        dest: /opt/gradle/
-        remote_src: yes
-      environment: /opt/gradle/gradle-5.3.1
+    - name: Download Gradle
+      get_url: 
+        url: https://services.gradle.org/distributions/gradle-5.3.1-bin.zip
+        dest: /tmp/
     - name: example copying file with owner and permissions
       copy:
         src: /var/lib/jenkins/workspace/pipeline/aws/devapp/index.html
