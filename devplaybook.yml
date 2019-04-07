@@ -22,7 +22,7 @@
     - name: Install Unzip
       yum: name=unzip state=present
     - name: Create gradle directory
-    - file:
+      file:
         path: /opt/gradle
         state: directory
         mode: 0755
