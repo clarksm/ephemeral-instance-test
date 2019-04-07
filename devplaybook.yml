@@ -29,11 +29,11 @@
     - name: Download Gradle
       get_url:
         url: https://services.gradle.org/distributions/gradle-5.3.1-bin.zip
-        dest: /opt/gradle/
+        dest: /tmp/
         mode: 0755
     - name: Extract Gradle
       unarchive:
-        src: /opt/gradle/gradle-5.3.1-bin.zip
+        src: /tmp/gradle-5.3.1-bin.zip
         dest: /opt/gradle/
         remote_src: yes
       environment: /opt/gradle/gradle-5.3.1
