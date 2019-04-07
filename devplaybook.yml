@@ -30,7 +30,7 @@
       get_url:
         url: https://services.gradle.org/distributions/gradle-5.3.1-bin.zip
         dest: /opt/gradle/
-        mode: 0440
+        mode: 0755
     - name: Extract Gradle
       unarchive:
         src: /opt/gradle/gradle-5.3.1-bin.zip
