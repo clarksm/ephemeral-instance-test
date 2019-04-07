@@ -19,6 +19,23 @@
         group: apache
     - name: Make sure Apache is started now and at boot.
       service: name=httpd state=started enabled=yes
+    - name: Install Unzip
+      yum: name=unzip state=present
+    - name: Create gradle directory
+    - file:
+        path: /opt/gradle
+        state: directory
+        mode: 0755
+    - name: Download Gradle
+      get_url:
+        url: https://gradle.org/next-steps/?version=5.3.1&format=bin
+        dest: /opt/gradle/
+        mode: 0440
+    - name: Extract Gradle
+      unarchive:
+        src: /opt/gradle/gradle-5.3.1-bin.zip
+        dest: /opt/gradle/gradle-5.3.1
+      environment: /opt/gradle/gradle-5.3.1
     - name: example copying file with owner and permissions
       copy:
         src: /var/lib/jenkins/workspace/pipeline/aws/devapp/index.html
