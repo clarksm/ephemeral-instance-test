@@ -19,10 +19,10 @@ pipeline {
 
  stage('Build') {
  steps {
-    dir('ephemeral-instance-test')
+    dir('train-app')
     {
     echo 'Running build automation'
-    sh 'train-app/gradle wrapper build --no-daemon'
+    sh './gradle wrapper build --no-daemon'
     archiveArtifacts artifacts: 'dist/trainSchedule.zip'
     }
     }
@@ -35,8 +35,7 @@ pipeline {
     expression { params.REQUESTED_ACTION == 'apply' }
 }
  steps {
- dir('ephemeral-instance-test')
- {
+
  sh 'terraform init'
  sh 'terraform plan -out=plan'
  sh 'terraform apply plan'
@@ -50,8 +49,6 @@ pipeline {
  sh 'aws ec2 describe-instances --query "Reservations[*].Instances[*].[PublicIpAddress]" --filters "Name=instance-state-name,Values=running,Name=tag:Environment,Values=Prod" --output=text > ./hosts/prodstage.txt'
  sh 'grep -v "None" ./hosts/prodstage.txt >> ./hosts/prodhosts.txt'
  //sh 'aws ec2 describe-instances --filter "Name=instance-state-name,Values=running,Name=tag:Environment,Values=Prod" --query "Reservations[].Instances[].[PublicIpAddress]" --output=text > ../../../hosts/prodhosts.txt'
- }
- 
  
  }
  }
@@ -63,13 +60,9 @@ stage('Infrastructure Configure') {
     expression { params.REQUESTED_ACTION == 'apply' }
 }
  steps {
- dir('ephemeral-instance-test')
- {
  sh 'sleep 20s'
  sh 'ansible-playbook -i ../../../hosts/devhosts.txt devplaybook.yml'
  sh 'ansible-playbook -i ../../../hosts/devhosts.txt devplaybook.yml'
- }
- 
  
  }
  }
@@ -81,11 +74,7 @@ stage('Infrastructure Destroy') {
     expression { params.REQUESTED_ACTION == 'destroy' }
 }
  steps {
- dir('ephemeral-instance-test')
- {
  sh 'terraform destroy -auto-approve'
- }
- 
  
  }
  }
