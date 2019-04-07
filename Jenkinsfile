@@ -22,7 +22,7 @@ pipeline {
     dir('ephemeral-instance-test')
     {
     echo 'Running build automation'
-    sh 'train-app/gradlew build --no-daemon'
+    sh 'train-app/gradle wrapper build --no-daemon'
     archiveArtifacts artifacts: 'dist/trainSchedule.zip'
     }
     }
