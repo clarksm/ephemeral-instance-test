@@ -33,6 +33,7 @@
          dest: /tmp
     - name: Extract Gradle
       shell: unzip /tmp/gradle-5.3.1-bin.zip -d /opt/gradle
-      environment: PATH:$PATH:/opt/gradle/gradle-5.3.1/bin
+      environment: 
+      PATH: $PATH:/opt/gradle/gradle-5.3.1/bin
 
 
