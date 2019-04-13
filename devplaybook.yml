@@ -27,13 +27,9 @@
       file:
         path: /opt/gradle
         state: directory
-    - name: Download Gradle
-      get_url: 
-        url: https://services.gradle.org/distributions/gradle-5.3.1-bin.zip
-        dest: /tmp
-    - name: Extract Gradle
+    - name: DL + Extract Gradle
       unarchive:
-        src: https://services.gradle.org/distributions/gradle-5.3.1-bin.zip
+        src: "https://services.gradle.org/distributions/gradle-5.3.1-bin.zip"
         dest: /opt/gradle
         creates: /opt/gradle/gradle-5.3.1
         remote_src: yes
