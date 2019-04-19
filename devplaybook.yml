@@ -45,8 +45,11 @@
       shell: export JAVA_HOME="/usr/lib/jvm/jre-1.8.0-openjdk.x86_64/"
     - name: Set Env
       shell: export PATH=$PATH:/opt/gradle/gradle-5.3.1/bin  
-    - name: Version check
-      shell: gradle -version
+    - name: copy app file to server
+      copy:
+        src: /var/lib/jenkins/workspace/train-pipe/dist/trainSchedule.zip
+        dest: /var/www/html/trainSchedule.zip     
+
         
 
 
