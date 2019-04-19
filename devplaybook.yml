@@ -47,7 +47,7 @@
       shell: export PATH=$PATH:/opt/gradle/gradle-5.3.1/bin  
     - name: copy app file to server
       copy:
-        src: /var/lib/jenkins/workspace/train-pipe/dist/trainSchedule.zip
+        src: /var/lib/jenkins/workspace/train-pipe/train-app/dist/trainSchedule.zip
         dest: /var/www/html/trainSchedule.zip     
 
         
