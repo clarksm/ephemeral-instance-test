@@ -41,12 +41,12 @@
          dest: /tmp
     - name: Extract Gradle
       shell: unzip /tmp/gradle-5.3.1-bin.zip -d /opt/gradle/
-    - name: Set Env
-      shell: export PATH=$PATH:/opt/gradle/gradle-5.3.1/bin
     - name: Export Java Home
       shell: export JAVA_HOME="/usr/lib/jvm/jre-1.8.0-openjdk.x86_64/"
+    - name: Set Env
+      shell: export PATH=$PATH:/opt/gradle/gradle-5.3.1/bin  
     - name: Version check
-      shell: gradle --version
+      shell: gradle -version
         
 
 
