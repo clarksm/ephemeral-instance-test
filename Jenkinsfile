@@ -61,8 +61,8 @@ stage('Infrastructure Configure') {
 }
  steps {
  sh 'sleep 20s'
- sh 'ansible-playbook -i ./hosts/devhosts.txt devplaybook.yml'
- sh 'ansible-playbook -i ./hosts/prodhosts.txt prodplaybook.yml'
+ sh 'ansible-playbook -i ./hosts/devhosts.txt devplaybook.yml -vvv'
+ sh 'ansible-playbook -i ./hosts/prodhosts.txt prodplaybook.yml -vvv'
  
  }
  }
