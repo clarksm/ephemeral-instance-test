@@ -10,8 +10,10 @@
       - httpd
       - php
       - php-mysql
-    - name: Install OpenJDK
-      yum: name=java-1.6.0-openjdk-devel state=present
+    - name: Remove Existing Java
+      yum: name=java state=removed  
+    - name: Install Java
+      yum: name=java-1.8.0-openjdk.x86_64 state=present
     - name: Make my directory tree readable
       file:
         path: /var/www/html/
@@ -24,7 +26,11 @@
     - name: Install Unzip
       yum: name=unzip state=present
     - name: Install GTAR     
-      yum: name=tar state=present   
+      yum: name=tar state=present
+    - name: Upgrade all packages
+      yum:
+        name: '*'
+        state: latest   
     - name: Create gradle directory
       file:
         path: /opt/gradle
@@ -37,6 +43,10 @@
       shell: unzip /tmp/gradle-5.3.1-bin.zip -d /opt/gradle/
     - name: Set Env
       shell: export PATH=$PATH:/opt/gradle/gradle-5.3.1/bin
+    - name: Export Java Home
+      shell: export JAVA_HOME="/usr/lib/jvm/jre-1.8.0-openjdk.x86_64/"
+    - name: Version check
+      shell: gradle --version
         
 
 
